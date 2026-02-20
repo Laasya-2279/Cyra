@@ -4,6 +4,7 @@ import CycleWheel from '../components/CycleWheel';
 import SensorCard from '../components/SensorCard';
 import PhaseTimeline from '../components/PhaseTimeline';
 import { PHASE_COLORS } from '../utils/phaseColors';
+import { formatDate } from '../utils/dateHelpers';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -12,6 +13,16 @@ const Dashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  
+  // Calculate next predicted period date
+  const getNextPeriodDate = () => {
+    const today = new Date();
+    const nextPeriod = new Date(today);
+    nextPeriod.setDate(today.getDate() + nextPeriodIn);
+    return nextPeriod;
+  };
+  
+  const nextPeriodDate = getNextPeriodDate();
   
   const phaseDescriptions = {
     menstrual: 'Your period phase. Rest and recover.',
@@ -45,13 +56,19 @@ const Dashboard = () => {
         
         <section className="stats-section">
           <div className="stat-card">
-            <span className="stat-value">{dayInCycle}</span>
-            <span className="stat-label">Day of Cycle</span>
+            <span className="stat-value">{formatDate(nextPeriodDate, 'short')}</span>
+            <span className="stat-label">Next Period Date</span>
           </div>
           <div className="stat-card">
             <span className="stat-value">{nextPeriodIn}</span>
             <span className="stat-label">Days Until Period</span>
           </div>
+          <div className="stat-card">
+            <span className="stat-value">{dayInCycle}</span>
+            <span className="stat-label">Day of Cycle</span>
+          </div>
+          
+          
         </section>
         
         <section className="sensors-section">

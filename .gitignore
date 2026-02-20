@@ -11,5 +11,5 @@ venv/
 node_modules/
 dist/
 build/
-package-lock.json
+**/package-lock.json
 **/models/

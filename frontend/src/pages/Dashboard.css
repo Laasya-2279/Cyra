@@ -1,72 +1,140 @@
+@keyframes gracefulFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
 .dashboard {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .dashboard-header {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  animation: gracefulFloat 4s ease-in-out infinite;
 }
 
 .dashboard-header h1 {
-  font-size: 28px;
-  color: #2c3e50;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c05480 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
 }
 
 .dashboard-header .date {
-  color: #666;
+  color: #999;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .cycle-section {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(255, 107, 157, 0.12);
+  border: 1px solid rgba(255, 107, 157, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.cycle-section:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 42px rgba(255, 107, 157, 0.18);
+}
+
+.cycle-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c05480 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
 }
 
 .phase-description {
-  border-left: 4px solid;
+  border-left: 4px solid #ff6b9d;
   padding-left: 15px;
   margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.phase-description:hover {
+  border-left-color: #c05480;
+  padding-left: 20px;
 }
 
 .phase-description p {
   color: #666;
   font-style: italic;
+  line-height: 1.6;
 }
 
 .stats-section {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .stat-card {
   flex: 1;
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
+  min-width: 150px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 28px 20px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(192, 84, 128, 0.12);
+  border: 1px solid rgba(192, 84, 128, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 48px rgba(192, 84, 128, 0.18);
 }
 
 .stat-value {
   display: block;
-  font-size: 36px;
-  font-weight: 700;
-  color: #ff6b9d;
+  font-size: 42px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c05480 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
 }
 
 .stat-label {
   display: block;
-  font-size: 14px;
-  color: #666;
+  font-size: 13px;
+  color: #999;
   margin-top: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .sensors-section {
@@ -74,22 +142,47 @@
 }
 
 .sensors-section h2 {
-  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c05480 0%, #764ba2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
 }
 
 .sensor-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .timeline-section {
   grid-column: span 2;
 }
 
+.timeline-section h2 {
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c05480 0%, #3182ce 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 26px;
+  }
+
   .dashboard-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   
   .sensors-section,
@@ -100,8 +193,16 @@
   .sensor-cards {
     grid-template-columns: 1fr;
   }
-  
+
   .stats-section {
     flex-direction: column;
+  }
+
+  .stat-card {
+    padding: 24px 16px;
+  }
+
+  .cycle-section {
+    grid-column: span 1;
   }
 }

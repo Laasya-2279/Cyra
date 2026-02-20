@@ -8,7 +8,6 @@ const Navbar = () => {
     { path: '/insights', label: 'Insights', icon: '📊' },
     { path: '/journal', label: 'Journal', icon: '📝' },
     { path: '/tips', label: 'Tips', icon: '💡' },
-    { path: '/settings', label: 'Settings', icon: '⚙️' }
   ];
   
   return (
@@ -31,11 +30,18 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      
-      <div className="navbar-actions">
-        <button className="sync-btn" title="Sync Data">
+      <button className="sync-btn" title="Sync Data">
           🔄
-        </button>
+      </button>
+      <div className="navbar-actions">
+        <NavLink 
+          to="/profile"
+          className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+          title="Profile"
+        >
+          <span className="nav-icon">👤</span>
+          <span className="nav-label">Profile</span>
+        </NavLink>
       </div>
     </nav>
   );

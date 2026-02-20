@@ -1,188 +1,248 @@
 .journal-page {
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 40px;
 }
 
 .journal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
+}
+
+.journal-header h1 {
+  font-size: 32px;
+  background: linear-gradient(135deg, #c05480, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .add-entry-btn {
-  padding: 10px 20px;
-  background: #ff6b9d;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff6b9d, #c05480);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: background 0.2s;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
 }
 
 .add-entry-btn:hover {
-  background: #ff4081;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
 }
 
 .journal-form {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(192, 84, 128, 0.08);
+  border: 1px solid rgba(192, 84, 128, 0.1);
 }
 
 .form-section {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
 }
 
 .form-section h3 {
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  color: #2c3e50;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .mood-selection {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .mood-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 20px;
-  background: #f8f9fa;
+  padding: 16px 18px;
+  background: rgba(245, 240, 255, 0.5);
   border: 2px solid transparent;
-  border-radius: 12px;
-  transition: all 0.2s;
+  border-radius: 14px;
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  cursor: pointer;
 }
 
 .mood-btn:hover {
-  background: #fff0f5;
+  background: rgba(255, 107, 157, 0.1);
+  border-color: rgba(255, 107, 157, 0.3);
 }
 
 .mood-btn.selected {
-  background: #fff0f5;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(192, 84, 128, 0.1));
   border-color: #ff6b9d;
 }
 
 .mood-emoji {
   font-size: 28px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .mood-label {
   font-size: 12px;
   color: #666;
+  font-weight: 500;
 }
 
 .symptom-selection {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .symptom-btn {
-  padding: 8px 16px;
-  background: #f0f0f0;
+  padding: 10px 18px;
+  background: rgba(245, 240, 255, 0.5);
   border: 2px solid transparent;
   border-radius: 20px;
   font-size: 13px;
-  transition: all 0.2s;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  cursor: pointer;
 }
 
 .symptom-btn:hover {
-  background: #e0e0e0;
+  background: rgba(255, 107, 157, 0.1);
+  border-color: rgba(255, 107, 157, 0.3);
 }
 
 .symptom-btn.selected {
-  background: #fff0f5;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(192, 84, 128, 0.15));
   border-color: #ff6b9d;
-  color: #ff6b9d;
+  color: #c05480;
 }
 
 textarea {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 14px;
+  border: 2px solid rgba(192, 84, 128, 0.1);
+  border-radius: 10px;
   resize: vertical;
   font-size: 14px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
 }
 
 textarea:focus {
   outline: none;
   border-color: #ff6b9d;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
 }
 
 .submit-btn {
   width: 100%;
-  padding: 15px;
-  background: #ff6b9d;
+  padding: 14px;
+  background: linear-gradient(135deg, #ff6b9d, #c05480);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
 }
 
 .submit-btn:hover {
-  background: #ff4081;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+.entries-list {
+  margin-top: 30px;
 }
 
 .entries-list h2 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #2c3e50;
+  font-weight: 700;
 }
 
 .no-entries {
   text-align: center;
-  color: #888;
-  padding: 40px;
-  background: white;
-  border-radius: 12px;
+  color: #999;
+  padding: 50px 30px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 2px dashed rgba(192, 84, 128, 0.2);
+  font-size: 15px;
 }
 
 .entry-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 32px rgba(192, 84, 128, 0.08);
+  border: 1px solid rgba(192, 84, 128, 0.1);
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.entry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(192, 84, 128, 0.12);
 }
 
 .entry-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(192, 84, 128, 0.1);
 }
 
 .entry-date {
-  font-size: 14px;
-  color: #666;
+  font-size: 13px;
+  color: #999;
+  font-weight: 500;
 }
 
 .entry-mood {
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .entry-symptoms {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .symptom-tag {
-  padding: 4px 12px;
-  background: #f0f0f0;
+  padding: 6px 12px;
+  background: rgba(255, 107, 157, 0.1);
+  color: #c05480;
   border-radius: 12px;
   font-size: 12px;
+  font-weight: 500;
 }
 
 .entry-notes {
   font-size: 14px;
   color: #666;
-  font-style: italic;
+  line-height: 1.6;
 }
