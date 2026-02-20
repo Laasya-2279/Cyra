@@ -1,0 +1,46 @@
+.cycle-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cycle-wheel {
+  width: 200px;
+  height: 200px;
+}
+
+.phase-segment {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.phase-segment.active {
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+}
+
+.day-number {
+  font-size: 24px;
+  font-weight: 700;
+  fill: #333;
+}
+
+.day-label {
+  font-size: 12px;
+  fill: #666;
+}
+
+.phase-info {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.phase-info h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.phase-info p {
+  color: #666;
+  font-size: 14px;
+}

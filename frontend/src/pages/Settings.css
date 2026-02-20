@@ -1,0 +1,150 @@
+.settings-page {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.settings-page h1 {
+  margin-bottom: 25px;
+}
+
+.settings-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.settings-section h2 {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ff6b9d;
+}
+
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff6b9d;
+}
+
+.form-group.checkbox label {
+  margin: 0;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-indicator.connected {
+  background: #4caf50;
+}
+
+.status-indicator.disconnected {
+  background: #f44336;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn.primary {
+  background: #ff6b9d;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #ff4081;
+}
+
+.btn.secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn.secondary:hover {
+  background: #e0e0e0;
+}
+
+.btn.danger {
+  background: #ffebee;
+  color: #f44336;
+}
+
+.btn.danger:hover {
+  background: #ffcdd2;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.settings-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.settings-footer p {
+  color: #888;
+  font-size: 12px;
+  margin: 5px 0;
+}

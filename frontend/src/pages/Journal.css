@@ -1,0 +1,188 @@
+.journal-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.journal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-entry-btn {
+  padding: 10px 20px;
+  background: #ff6b9d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.add-entry-btn:hover {
+  background: #ff4081;
+}
+
+.journal-form {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-section {
+  margin-bottom: 25px;
+}
+
+.form-section h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.mood-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mood-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.mood-btn:hover {
+  background: #fff0f5;
+}
+
+.mood-btn.selected {
+  background: #fff0f5;
+  border-color: #ff6b9d;
+}
+
+.mood-emoji {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.mood-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.symptom-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.symptom-btn {
+  padding: 8px 16px;
+  background: #f0f0f0;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.symptom-btn:hover {
+  background: #e0e0e0;
+}
+
+.symptom-btn.selected {
+  background: #fff0f5;
+  border-color: #ff6b9d;
+  color: #ff6b9d;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #ff6b9d;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: #ff6b9d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.submit-btn:hover {
+  background: #ff4081;
+}
+
+.entries-list h2 {
+  margin-bottom: 15px;
+}
+
+.no-entries {
+  text-align: center;
+  color: #888;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+}
+
+.entry-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.entry-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.entry-mood {
+  font-size: 24px;
+}
+
+.entry-symptoms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.symptom-tag {
+  padding: 4px 12px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.entry-notes {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}

@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Common button styles */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn.primary {
+  background-color: #ff6b9d;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #ff4081;
+}
+
+.btn.secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn.secondary:hover {
+  background-color: #d0d0d0;
+}
+
+/* Card styles */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

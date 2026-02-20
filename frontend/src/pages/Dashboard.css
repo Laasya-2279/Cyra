@@ -1,0 +1,107 @@
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  color: #2c3e50;
+}
+
+.dashboard-header .date {
+  color: #666;
+  font-size: 14px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cycle-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.phase-description {
+  border-left: 4px solid;
+  padding-left: 15px;
+  margin-top: 15px;
+}
+
+.phase-description p {
+  color: #666;
+  font-style: italic;
+}
+
+.stats-section {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-card {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.stat-value {
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff6b9d;
+}
+
+.stat-label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.sensors-section {
+  grid-column: span 2;
+}
+
+.sensors-section h2 {
+  margin-bottom: 15px;
+}
+
+.sensor-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.timeline-section {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sensors-section,
+  .timeline-section {
+    grid-column: span 1;
+  }
+  
+  .sensor-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-section {
+    flex-direction: column;
+  }
+}
