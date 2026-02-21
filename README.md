@@ -1,28 +1,31 @@
-<p align="center">
+<img width="827" height="271" alt="image" src="https://github.com/user-attachments/assets/a11a9147-f14f-46d6-88b0-4f55acfabecf" /><p align="center">
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# CyRa 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: Debuggers
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: Laasya UG  - MITS
+- Member 2: Shivani S Bhat - MITS
 
-### Hosted Project Link
-[mention your project hosted link here]
 
 ### Project Description
-[2-3 lines about what your project does]
+CycleAura is a smart wearable menstrual health tracking system that uses real-time biometric sensing and machine learning to monitor and predict a user’s menstrual cycle phases with high accuracy. Instead of manual input or calendar-based estimations, the system continuously collects physiological data such as basal body temperature, heart rate, and motion patterns using body-mounted sensors.
+
+The wearable device transmits sensor data to a cloud-based backend, where a machine learning model analyses patterns to predict cycle phases, ovulation windows, and upcoming periods. Results appear on an interactive web dashboard that offers personalised health insights, symptom tracking, and phase-based wellness guidance.
+
+By combining hardware sensing, data analytics, and personalised recommendations, CycleAura offers users a comprehensive and automated understanding of their reproductive health.CycleAura_ProjectPlan
+
 
 ### The Problem statement
-[What problem are you solving?]
+Most existing menstrual tracking apps rely on calendar-based predictions and manual input, which ignore real physiological signals and lead to inaccurate results. This prevents users from receiving reliable ovulation predictions and personalised health insights. There is a need for an automated system that uses real biometric data to provide accurate, individualised cycle tracking.
 
 ### The Solution
-[How are you solving it?]
+CycleAura solves this problem by using a wearable device that continuously collects real biometric data such as basal body temperature, heart rate, and motion. This data is analysed using machine learning to accurately predict menstrual cycle phases, ovulation, and upcoming periods. The system then delivers personalised insights and health guidance through an interactive web dashboard.
 
 ---
 
@@ -31,25 +34,55 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+- Languages used: Arduino C++, Python, Javascript, HTML & CSS
+- Frameworks used: Flask, React, MongoDB, Socket.io, scikit-learn
+- Libraries used:
+  - ### 🔹 Firmware (ESP32)
+  - OneWire — communication with DS18B20 temperature sensor  
+  - DallasTemperature — temperature data processing  
+  - Wire (I2C) — communication with OLED and MAX30102  
+  - Adafruit GFX — graphics support for OLED display  
+  - Adafruit SSD1306 — OLED display control  
+  - MAX30102 Sensor Library — heart rate and SpO2 readings  
+  - WiFi — network connectivity  
+  - HTTPClient — sending sensor data to backend  
+  
+  ### 🔹 Backend (Python)
+  - Flask — REST API server  
+  - pymongo — MongoDB database connection  
+  - scikit-learn — machine learning model  
+  - pandas — data processing and analysis  
+  - flask-cors — cross-origin request handling  
+  - python-socketio — real-time communication  
+  
+  ### 🔹 Frontend (React)
+  - Axios — API requests  
+  - Recharts — data visualization graphs  
+  - socket.io-client — live sensor data updates
+  
+- Tools used: VS code, MongoDB Atlas
 
 **For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
+- Main components: ESP-32 Dev Board V1, MAX30102 (Heart Rate monitor), ds18b20 (Temperature Sensor), ADXL335 (Accelometer)
+- Specifications:
+  | Component | Specification | Purpose |
+  |---|---|---|
+  | ESP32 | 240 MHz dual-core processor, WiFi enabled | Data processing and cloud communication |
+  | DS18B20 | Digital temperature sensor, ±0.5°C accuracy | Basal body temperature tracking |
+  | MAX30102 | Optical heart rate and SpO₂ sensor | Pulse and oxygen monitoring |
+  | ADXL335 | 3-axis analog accelerometer | Motion artifact removal |
+
+- Tools required:  Arduino IDE
 
 ---
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1: Real-Time Biometric Tracking - Continuously monitors basal body temperature, heart rate, and motion using wearable sensors.
+- Feature 2: AI-Based Cycle Prediction - Machine learning analyzes personal biometric patterns to predict cycle phases and ovulation accurately.
+- Feature 3: Non-Invasive Wearable Design - Comfortable sensor-based device enables effortless daily health monitoring without manual input.
+- Feature 4: Personalized Health Insights Dashboard - Interactive web app provides cycle predictions, symptom tracking, and phase-based wellness guidance.
 
 ---
 
@@ -59,21 +92,50 @@ List the key features of your project:
 
 #### Installation
 ```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
+pip install -r requirements.txt
 ```
 
 #### Run
 ```bash
-[Run commands - e.g., npm start, python app.py]
+npm run dev
+python app.py
 ```
 
 ### For Hardware:
 
 #### Components Required
-[List all components needed with specifications]
+| Component | Specification | Purpose |
+  |---|---|---|
+  | ESP32 | 240 MHz dual-core processor, WiFi enabled | Data processing and cloud communication |
+  | DS18B20 | Digital temperature sensor, ±0.5°C accuracy | Basal body temperature tracking |
+  | MAX30102 | Optical heart rate and SpO₂ sensor | Pulse and oxygen monitoring |
+  | ADXL335 | 3-axis analog accelerometer | Motion artifact removal |
 
 #### Circuit Setup
-[Explain how to set up the circuit]
+1. **Connect DS18B20 Temperature Sensor**
+   - VCC → 3.3V (ESP32)
+   - GND → GND
+   - DATA → GPIO 4 (ESP32)
+   - Add a 4.7kΩ pull-up resistor between DATA and VCC
+
+2. **Connect MAX30102 Heart Rate Sensor (I2C)**
+   - VCC → 3.3V (ESP32)
+   - GND → GND
+   - SDA → GPIO 21 (ESP32)
+   - SCL → GPIO 22 (ESP32)
+
+3. **Connect ADXL335 Accelerometer**
+   - VCC → 3.3V (ESP32)
+   - GND → GND
+   - X → GPIO 34 (ESP32, ADC)
+   - Y → GPIO 35 (ESP32, ADC)
+   - Z → GPIO 32 (ESP32, ADC)
+4. **Power the ESP32**
+   - Connect ESP32 to computer using USB cable.
+5. **Upload Firmware**
+   - Open Arduino IDE
+   - Select ESP32 board and correct COM port
+   - Upload firmware to start data collection
 
 ---
 
@@ -81,28 +143,29 @@ List the key features of your project:
 
 ### For Software:
 
-#### Screenshots (Add at least 3)
+#### Screenshots 
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot1] : Dashboard
+Pic/Dashboard.jpeg
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot2] : Signin
+Pic/signin.jpeg
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot3]: signup
+Pic/signup.jpeg
 
 #### Diagrams
 
 **System Architecture:**
 
 ![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
+Pic/Architwcture.jpeg
 
 **Application Workflow:**
 
-![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
+![Workflow]:
+
+
 
 ---
 
@@ -110,24 +173,30 @@ List the key features of your project:
 
 #### Schematic & Circuit
 
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
+Pic/Circuit dai.jpeg
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
 
-#### Build Photos
+![Schematic]
 
-![Team](Add photo of your team here)
 
-![Components](Add photo of your components here)
-*List out all components shown*
+#### Build Photos:
+
+![Components]
+Pic/Components/WhatsApp Image 2026-02-21 at 8.45.16 AM.jpeg - ESP 32
+Pic/Components/WhatsApp Image 2026-02-21 at 8.45.48 AM.jpeg - Temperature sensor
+Pic/Components/WhatsApp Image 2026-02-21 at 8.46.06 AM.jpeg - Accelometor
+Pic/Components/WhatsApp Image 2026-02-21 at 8.46.37 AM.jpeg - MAX30102
+Pic/Components/WhatsApp Image 2026-02-21 at 8.48.09 AM.jpeg - Resistor 4.7oh
+Pic/Components/WhatsApp Image 2026-02-21 at 8.48.22 AM.jpeg - USB cable
+
+
+
 
 ![Build](Add photos of build process here)
-*Explain the build steps*
+Pic/Components/WhatsApp Image 2026-02-21 at 8.47.19 AM.jpeg 
 
 ![Final](Add photo of final product here)
-*Explain the final build*
+Pic/Components/WhatsApp Image 2026-02-21 at 8.47.41 AM.jpeg
 
 ---
 
@@ -135,98 +204,63 @@ List the key features of your project:
 
 ### For Web Projects with Backend:
 
-#### API Documentation
-
-**Base URL:** `https://api.yourproject.com`
-
 ##### Endpoints
 
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
-- **Response:**
-```json
-{
-  "status": "success",
-  "data": {}
-}
-```
+## 🔗 Backend API Endpoints
 
-**POST /api/endpoint**
-- **Description:** [What it does]
-- **Request Body:**
-```json
-{
-  "field1": "value1",
-  "field2": "value2"
-}
-```
-- **Response:**
-```json
-{
-  "status": "success",
-  "message": "Operation completed"
-}
-```
+### Sensor Data
 
-[Add more endpoints as needed...]
+| Method | Endpoint | Payload / Response | Purpose |
+|-------|---------|-------------------|--------|
+| POST | /api/sensor/bbt | `{ bbt, timestamp }` | Receive basal body temperature reading from ESP32 |
+| POST | /api/sensor/heartrate | `{ bpm, spo2, timestamp }` | Receive heart rate and SpO₂ data from ESP32 |
 
 ---
 
-### For Mobile Apps:
+### Cycle Prediction & Health Data
 
-#### App Flow Diagram
-
-![App Flow](docs/app-flow.png)
-*Explain the user flow through your application*
-
-#### Installation Guide
-
-**For Android (APK):**
-1. Download the APK from [Release Link]
-2. Enable "Install from Unknown Sources" in your device settings:
-   - Go to Settings > Security
-   - Enable "Unknown Sources"
-3. Open the downloaded APK file
-4. Follow the installation prompts
-5. Open the app and enjoy!
-
-**For iOS (IPA) - TestFlight:**
-1. Download TestFlight from the App Store
-2. Open this TestFlight link: [Your TestFlight Link]
-3. Click "Install" or "Accept"
-4. Wait for the app to install
-5. Open the app from your home screen
-
-**Building from Source:**
-```bash
-# For Android
-flutter build apk
-# or
-./gradlew assembleDebug
-
-# For iOS
-flutter build ios
-# or
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
-```
+| Method | Endpoint | Payload / Response | Purpose |
+|-------|---------|-------------------|--------|
+| GET | /api/cycle/prediction | Returns phase, confidence, ovulation date, next period | Get ML cycle prediction |
+| GET | /api/cycle/history | Returns array of past BBT readings | BBT trend graph data |
+| GET | /api/cycle/heartrate | Returns array of past BPM readings | Heart rate trend data |
 
 ---
+
+### Journal & Insights
+
+| Method | Endpoint | Payload / Response | Purpose |
+|-------|---------|-------------------|--------|
+| POST | /api/journal/entry | `{ mood, pain, flow, pms, energy, notes }` | Save journal entry |
+| GET | /api/journal/entries | Returns list of journal entries | Retrieve journal history |
+| GET | /api/tips/today | Returns tips for current phase | Provide personalized health tips |
+
+---
+
+### User Profile
+
+| Method | Endpoint | Payload / Response | Purpose |
+|-------|---------|-------------------|--------|
+| POST | /api/user/profile | `{ age, bmi, pcos, birth_control }` | Save user profile |
+| GET | /api/user/profile | Returns user profile object | Load profile for ML personalization |
+
+---
+
+
 
 ### For Hardware Projects:
 
 #### Bill of Materials (BOM)
 
-| Component | Quantity | Specifications | Price | Link/Source |
-|-----------|----------|----------------|-------|-------------|
-| Arduino Uno | 1 | ATmega328P, 16MHz | ₹450 | [Link] |
-| LED | 5 | Red, 5mm, 20mA | ₹5 each | [Link] |
-| Resistor | 5 | 220Ω, 1/4W | ₹1 each | [Link] |
-| Breadboard | 1 | 830 points | ₹100 | [Link] |
-| Jumper Wires | 20 | Male-to-Male | ₹50 | [Link] |
-| [Add more...] | | | | |
+| Component | Quantity | Specifications | Price (INR) | Link/Source |
+|-----------|----------|----------------|-------------|-------------|
+| ESP32 Development Board | 1 | WiFi-enabled microcontroller, 240 MHz dual-core | 400 | Local electronics store / online |
+| DS18B20 Temperature Sensor | 1 | Digital temperature sensor, ±0.5°C accuracy | 100 | Local electronics store / online |
+| MAX30102 Heart Rate Sensor | 1 | Optical heart rate and SpO₂ sensor (I2C) | 300 | Local electronics store / online |
+| ADXL335 Accelerometer | 1 | 3-axis analog accelerometer | 200 | Local electronics store / online |
+| Breadboard | 1 | Standard solderless breadboard | 80 | Local electronics store / online |
+| Jumper Wires | 1 set | Male-to-male / male-to-female wires | 70 | Local electronics store / online |
+| USB Cable | 1 | USB to Micro-USB for ESP32 | 100 | Local electronics store / online |
 
 **Total Estimated Cost:** ₹[Amount]
 
@@ -268,36 +302,23 @@ xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
 
 **Basic Usage:**
 ```bash
-python script.py [options] [arguments]
+python app.py
+npm run dev
 ```
 
 **Available Commands:**
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
+# Example 1: Start backend server
+python app.py
 
-**Options:**
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
+# Example 2: Start frontend dashboard
+npm run dev
 
-**Examples:**
+# Example 3: Run backend on custom port
+python app.py --port 8000
 
-```bash
-# Example 1: Basic usage
-python script.py input.txt
+# Example 4: Test API endpoint
+curl http://localhost:5000/api/cycle/prediction
 
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
 
 #### Demo Output
 
@@ -305,55 +326,20 @@ python script.py -c config.json --verbose input.txt
 
 **Input:**
 ```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
+ESP32 collects biometric readings
+BBT = 36.6°C
+Heart Rate = 72 BPM
+Motion Level = Low
 ```
 
 **Command:**
 ```bash
-python script.py sample.txt
+python app.py
 ```
 
 **Output:**
 ```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-**Input:**
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-**Command:**
-```bash
-python script.py -v --format json data.json
-```
-
-**Output:**
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
+{"confidence":0.572,"cycle_length_est":28.0,"health_score":9.7,"next_period_in_days":27,"ovulation_positive":true,"phase":"Menstrual"}
 ```
 
 ---
@@ -370,39 +356,48 @@ python script.py -v --format json data.json
 
 ---
 
-## AI Tools Used (Optional - For Transparency Bonus)
+## AI Tools Used 
 
 If you used AI tools during development, document them here for transparency:
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+**Tool Used:** Claude, ChatGPT
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
+**Purpose:**
+- Assisted in structuring the project README documentation  
+- Helped generate boilerplate backend API structure  
+- Provided debugging guidance for sensor integration and data flow  
+- Suggested improvements for system architecture and feature design  
 
 **Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
+- "Generate a Flask API structure for IoT sensor data"
+- "Explain how to integrate ESP32 sensor data with a web dashboard"
+- "Create README sections for hardware-software integrated project"
+- "Improve project documentation for hackathon submission"
 
-**Percentage of AI-generated code:** [Approximately X%]
+**Percentage of AI-generated code:** Approximately 15–20%
 
 **Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
+- Hardware integration and circuit design  
+- Sensor interfacing and firmware implementation  
+- Machine learning model training and integration  
+- Backend and frontend development  
+- System testing and validation  
+- UI/UX design and project presentation
 
-*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
-
+*Note: AI tools were used only for assistance and documentation support. All core implementation and design decisions were completed by the team.*
 ---
 
 ## Team Contributions
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+- Laasya UG :
+  - Backend development and ML integration  
+  - Frontend dashboard development  
+  - Database setup and testing  
+- Shivani S Bhat:
+  - Hardware integration and sensor interfacing  
+  - Firmware development for ESP32  
+  - System architecture design  
+
 
 ---
 
@@ -418,3 +413,4 @@ This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LI
 ---
 
 Made with ❤️ at TinkerHub
+
