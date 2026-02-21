@@ -1,4 +1,4 @@
-<img width="827" height="271" alt="image" src="https://github.com/user-attachments/assets/a11a9147-f14f-46d6-88b0-4f55acfabecf" /><p align="center">
+<img width="827" height="271" alt="image" src="img.png" /><p align="center">
 </p>
 
 # CyRa 🎯
@@ -452,5 +452,6 @@ This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LI
 ---
 
 Made with ❤️ at TinkerHub
+
 
 
