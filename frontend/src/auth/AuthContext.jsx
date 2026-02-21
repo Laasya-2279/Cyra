@@ -1,19 +1,21 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 /* ─────────────────────────────────────────────
-   AuthContext — CycleAura
+   AuthContext — CyRa
    Provides: user, token, login, signup, logout,
              updateProfile, loading, authError
 ───────────────────────────────────────────── */
 
 const AuthContext = createContext(null);
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 // ── Storage helpers ──────────────────────────────────────────────────
-const TOKEN_KEY  = 'ca_auth_token';
-const USER_KEY   = 'ca_user';
+const TOKEN_KEY = 'ca_auth_token';
+const USER_KEY = 'ca_user';
 
 const storage = {
-  saveSession : (token, user) => {
+  saveSession: (token, user) => {
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   },
@@ -23,116 +25,88 @@ const storage = {
     localStorage.removeItem('ca_profile_done');
   },
   getToken: () => localStorage.getItem(TOKEN_KEY),
-  getUser : () => {
+  getUser: () => {
     try { return JSON.parse(localStorage.getItem(USER_KEY)); }
     catch { return null; }
   },
 };
 
-// ── Mock token generator (replace with real JWT from backend) ─────────
-const generateToken = (email) =>
-  btoa(`${email}:${Date.now()}:${Math.random().toString(36).slice(2)}`);
+// ── Real API layer ───────────────────────────────────────────────────
+async function apiPost(path, body) {
+  const res = await fetch(`${API}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error || 'Request failed');
+  return json;
+}
 
-// ── In-memory "database" (replace with real API calls) ────────────────
-// Format: { [email]: { passwordHash, profile } }
-const mockDB = {};
-
-const hashPassword = async (password) => {
-  // In production use bcrypt/argon2 on server.
-  // Here we use a simple Web Crypto SHA-256 hash.
-  const buf = await crypto.subtle.digest(
-    'SHA-256',
-    new TextEncoder().encode(password + '__ca_salt__')
-  );
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-};
-
-// ── API layer (swap out these functions for real fetch() calls) ───────
 const api = {
   async register(formData) {
-    await new Promise(r => setTimeout(r, 1200)); // simulate latency
-
-    const { email, password, name } = formData;
-    if (mockDB[email]) throw new Error('An account with this email already exists.');
-
-    const passwordHash = await hashPassword(password);
-    const user = {
-      id          : crypto.randomUUID(),
-      email,
-      name,
-      createdAt   : new Date().toISOString(),
-      profileDone : false,
-      // Cycle data from signup form
+    const { email, password, name, ...rest } = formData;
+    return apiPost('/api/auth/register', {
+      email, password, name,
       cycleProfile: {
-        dob              : formData.dob            || null,
-        height           : formData.height         || null,
-        heightUnit       : formData.heightUnit      || 'cm',
-        weight           : formData.weight         || null,
-        weightUnit       : formData.weightUnit      || 'kg',
-        cycleLength      : formData.cycleLength     || '28',
-        periodDuration   : formData.periodDuration  || '5',
-        lastPeriod       : formData.lastPeriod      || null,
-        periodRegularity : formData.periodRegularity|| null,
-        birthControlType : formData.birthControlType|| null,
-        healthConditions : formData.healthConditions|| [],
-        previousCycles   : formData.previousCycles || [],
+        dob: rest.dob || null,
+        height: rest.height || null,
+        heightUnit: rest.heightUnit || 'cm',
+        weight: rest.weight || null,
+        weightUnit: rest.weightUnit || 'kg',
+        cycleLength: rest.cycleLength || '28',
+        periodDuration: rest.periodDuration || '5',
+        lastPeriod: rest.lastPeriod || null,
+        periodRegularity: rest.periodRegularity || null,
+        birthControlType: rest.birthControlType || null,
+        healthConditions: rest.healthConditions || [],
+        previousCycles: rest.previousCycles || [],
         lifestyle: {
-          baseMood              : formData.baseMood              || null,
-          sleepHours            : formData.sleepHours            || '7',
-          sleepChangeDuringPeriod: formData.sleepChangeDuringPeriod || null,
-          skinCondition         : formData.skinCondition         || null,
-          skinChangeDuringPeriod: formData.skinChangeDuringPeriod || null,
-          energyLevel           : formData.energyLevel           || '5',
-          diet                  : formData.diet                  || null,
-          mentalHealth          : formData.mentalHealth          || null,
+          baseMood: rest.baseMood || null,
+          sleepHours: rest.sleepHours || '7',
+          sleepChangeDuringPeriod: rest.sleepChangeDuringPeriod || null,
+          skinCondition: rest.skinCondition || null,
+          skinChangeDuringPeriod: rest.skinChangeDuringPeriod || null,
+          energyLevel: rest.energyLevel || '5',
+          diet: rest.diet || null,
+          mentalHealth: rest.mentalHealth || null,
         },
       },
-    };
-
-    mockDB[email] = { passwordHash, user };
-    const token = generateToken(email);
-    return { token, user };
+    });
   },
 
   async login(email, password) {
-    await new Promise(r => setTimeout(r, 1000));
-
-    const record = mockDB[email];
-    if (!record) throw new Error('No account found with this email address.');
-
-    const hash = await hashPassword(password);
-    if (hash !== record.passwordHash) throw new Error('Incorrect password. Please try again.');
-
-    const token = generateToken(email);
-    return { token, user: record.user };
+    return apiPost('/api/auth/login', { email, password });
   },
 
   async resetPassword(email) {
-    await new Promise(r => setTimeout(r, 900));
-    if (!mockDB[email]) throw new Error('No account found with this email address.');
-    // In production: send a real reset email via backend
-    return { success: true };
+    return apiPost('/api/auth/reset-password', { email });
   },
 
-  async updateProfile(email, updates) {
-    await new Promise(r => setTimeout(r, 600));
-    if (!mockDB[email]) throw new Error('User not found.');
-    mockDB[email].user = { ...mockDB[email].user, ...updates };
-    return { user: mockDB[email].user };
+  async updateProfile(token, userId, updates) {
+    const res = await fetch(`${API}/api/user/profile`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ user_id: userId, ...updates }),
+    });
+    return res.json();
   },
 };
 
 // ── Provider ──────────────────────────────────────────────────────────
 export function AuthProvider({ children }) {
-  const [user,      setUser    ] = useState(null);
-  const [token,     setToken   ] = useState(null);
-  const [loading,   setLoading ] = useState(true);   // true on first mount while we restore session
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState('');
 
   // Restore session on mount
   useEffect(() => {
     const savedToken = storage.getToken();
-    const savedUser  = storage.getUser();
+    const savedUser = storage.getUser();
     if (savedToken && savedUser) {
       setToken(savedToken);
       setUser(savedUser);
@@ -197,7 +171,8 @@ export function AuthProvider({ children }) {
     if (!user) return { success: false, error: 'Not logged in.' };
     setAuthError('');
     try {
-      const { user: updated } = await api.updateProfile(user.email, updates);
+      await api.updateProfile(token, user.user_id, updates);
+      const updated = { ...user, ...updates };
       storage.saveSession(token, updated);
       setUser(updated);
       return { success: true, user: updated };

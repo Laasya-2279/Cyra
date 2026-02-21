@@ -1,84 +1,121 @@
 import { API_BASE_URL } from './socket';
 
 /**
- * API service for CycleAura
- * All API call functions
+ * API service for CyRa
+ * All endpoints match the Flask backend routes in app.py
  */
 
+// Helper: get auth token from localStorage
+function authHeaders() {
+  const token = localStorage.getItem('ca_auth_token');
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  return headers;
+}
+
 const api = {
-  /**
-   * Send sensor data to server
-   */
-  async sendSensorData(data) {
-    const response = await fetch(`${API_BASE_URL}/api/data`, {
+  /* ── Sensor data (used by CycleContext) ────────────────────── */
+
+  async sendBBT(userId, bbt) {
+    const res = await fetch(`${API_BASE_URL}/api/sensor/bbt`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      headers: authHeaders(),
+      body: JSON.stringify({ user_id: userId, bbt }),
     });
-    return response.json();
+    return res.json();
   },
 
-  /**
-   * Get cycle phase prediction
-   */
-  async predictPhase(bbtData) {
-    const response = await fetch(`${API_BASE_URL}/api/predict`, {
+  async sendHeartRate(userId, data) {
+    const res = await fetch(`${API_BASE_URL}/api/sensor/heartrate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bbt_data: bbtData })
+      headers: authHeaders(),
+      body: JSON.stringify({ user_id: userId, ...data }),
     });
-    return response.json();
+    return res.json();
   },
 
-  /**
-   * Get historical sensor data
-   */
-  async getHistory(userId, days = 30) {
-    const response = await fetch(
-      `${API_BASE_URL}/api/history?user_id=${userId}&days=${days}`
+  /* ── Predictions ──────────────────────────────────────────── */
+
+  async getPrediction(userId) {
+    const res = await fetch(
+      `${API_BASE_URL}/api/cycle/prediction?user_id=${userId}`,
+      { headers: authHeaders() }
     );
-    return response.json();
+    return res.json();
   },
 
-  /**
-   * Add journal entry
-   */
-  async addJournalEntry(entry) {
-    const response = await fetch(`${API_BASE_URL}/api/journal`, {
+  /* ── History ──────────────────────────────────────────────── */
+
+  async getBBTHistory(userId, limit = 30) {
+    const res = await fetch(
+      `${API_BASE_URL}/api/cycle/history?user_id=${userId}&limit=${limit}`,
+      { headers: authHeaders() }
+    );
+    return res.json();
+  },
+
+  async getHeartRateHistory(userId, limit = 30) {
+    const res = await fetch(
+      `${API_BASE_URL}/api/cycle/heartrate-history?user_id=${userId}&limit=${limit}`,
+      { headers: authHeaders() }
+    );
+    return res.json();
+  },
+
+  /* ── Journal ──────────────────────────────────────────────── */
+
+  async addJournalEntry(userId, entry) {
+    const res = await fetch(`${API_BASE_URL}/api/journal/entry`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(entry)
+      headers: authHeaders(),
+      body: JSON.stringify({ user_id: userId, ...entry }),
     });
-    return response.json();
+    return res.json();
   },
 
-  /**
-   * Get journal entries
-   */
   async getJournalEntries(userId) {
-    const response = await fetch(
-      `${API_BASE_URL}/api/journal?user_id=${userId}`
+    const res = await fetch(
+      `${API_BASE_URL}/api/journal/entries?user_id=${userId}`,
+      { headers: authHeaders() }
     );
-    return response.json();
+    return res.json();
   },
 
-  /**
-   * Get phase-based health tips
-   */
-  async getTips(phase) {
-    const response = await fetch(
-      `${API_BASE_URL}/api/tips?phase=${phase}`
+  /* ── Tips ──────────────────────────────────────────────────── */
+
+  async getTips(userId) {
+    const res = await fetch(
+      `${API_BASE_URL}/api/tips/today?user_id=${userId}`,
+      { headers: authHeaders() }
     );
-    return response.json();
+    return res.json();
   },
 
-  /**
-   * Health check endpoint
-   */
+  /* ── User Profile ─────────────────────────────────────────── */
+
+  async getUserProfile(userId) {
+    const res = await fetch(
+      `${API_BASE_URL}/api/user/profile?user_id=${userId}`,
+      { headers: authHeaders() }
+    );
+    return res.json();
+  },
+
+  async saveUserProfile(userId, profile) {
+    const res = await fetch(`${API_BASE_URL}/api/user/profile`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ user_id: userId, ...profile }),
+    });
+    return res.json();
+  },
+
+  /* ── Health check ─────────────────────────────────────────── */
+
   async healthCheck() {
-    const response = await fetch(`${API_BASE_URL}/api/health`);
-    return response.json();
-  }
+    const res = await fetch(`${API_BASE_URL}/api/health`);
+    return res.json();
+  },
 };
 
 export default api;

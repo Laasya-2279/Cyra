@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 
 /**
  * Socket.io client setup
- * Real-time communication with CycleAura server
+ * Real-time communication with CyRa server
  */
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -14,26 +14,26 @@ let socket = null;
  */
 export const initSocket = () => {
   if (socket) return socket;
-  
+
   socket = io(API_BASE_URL, {
     transports: ['websocket', 'polling'],
     reconnection: true,
     reconnectionAttempts: 5,
     reconnectionDelay: 1000
   });
-  
+
   socket.on('connect', () => {
     console.log('Socket connected:', socket.id);
   });
-  
+
   socket.on('disconnect', (reason) => {
     console.log('Socket disconnected:', reason);
   });
-  
+
   socket.on('connect_error', (error) => {
     console.error('Connection error:', error);
   });
-  
+
   return socket;
 };
 
@@ -79,7 +79,7 @@ export const leaveUserRoom = (userId) => {
 export const onSensorUpdate = (callback) => {
   const s = getSocket();
   s.on('sensor_update', callback);
-  
+
   return () => {
     s.off('sensor_update', callback);
   };
@@ -91,7 +91,7 @@ export const onSensorUpdate = (callback) => {
 export const onPhaseChange = (callback) => {
   const s = getSocket();
   s.on('phase_changed', callback);
-  
+
   return () => {
     s.off('phase_changed', callback);
   };

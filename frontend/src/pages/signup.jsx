@@ -4,17 +4,17 @@ import { useAuth } from '../auth/AuthContext';
 import './Signup.css';
 
 const TOTAL_STEPS = 4;
-const STEP_TITLES    = ['Create Account','Body & Cycle Basics','Cycle Health History','Lifestyle & Wellness'];
-const STEP_SUBTITLES = ['Set up your secure account','Physical profile & cycle setup','Help us understand your cycle patterns','Daily habits that shape your cycle'];
-const STEP_ICONS     = ['🔐','📏','🌸','🌿'];
+const STEP_TITLES = ['Create Account', 'Body & Cycle Basics', 'Cycle Health History', 'Lifestyle & Wellness'];
+const STEP_SUBTITLES = ['Set up your secure account', 'Physical profile & cycle setup', 'Help us understand your cycle patterns', 'Daily habits that shape your cycle'];
+const STEP_ICONS = ['🔐', '📏', '🌸', '🌿'];
 
 export default function Signup() {
   const navigate = useNavigate();
   const { signup, authError, clearError } = useAuth();  // ← NEW
 
-  const [step, setStep]       = useState(1);
+  const [step, setStep] = useState(1);
   const [showPass, setShowPass] = useState(false);
-  const [errors, setErrors]   = useState({});
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
@@ -50,17 +50,17 @@ export default function Signup() {
   const validate = (s) => {
     const e = {};
     if (s === 1) {
-      if (!form.name.trim())                              e.name            = 'Name is required';
-      if (!form.email.includes('@'))                      e.email           = 'Enter a valid email';
-      if (form.password.length < 8)                      e.password        = 'Min. 8 characters';
-      if (form.password !== form.confirmPassword)        e.confirmPassword = 'Passwords do not match';
+      if (!form.name.trim()) e.name = 'Name is required';
+      if (!form.email.includes('@')) e.email = 'Enter a valid email';
+      if (form.password.length < 8) e.password = 'Min. 8 characters';
+      if (form.password !== form.confirmPassword) e.confirmPassword = 'Passwords do not match';
     }
     if (s === 2) {
-      if (!form.dob)              e.dob             = 'Date of birth is required';
-      if (!form.height)           e.height          = 'Height is required';
-      if (!form.weight)           e.weight          = 'Weight is required';
-      if (!form.lastPeriod)       e.lastPeriod      = 'Required to calibrate predictions';
-      if (!form.periodRegularity) e.periodRegularity= 'Please select regularity';
+      if (!form.dob) e.dob = 'Date of birth is required';
+      if (!form.height) e.height = 'Height is required';
+      if (!form.weight) e.weight = 'Weight is required';
+      if (!form.lastPeriod) e.lastPeriod = 'Required to calibrate predictions';
+      if (!form.periodRegularity) e.periodRegularity = 'Please select regularity';
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -78,16 +78,16 @@ export default function Signup() {
     // authError is exposed from context if it fails
   };
 
-  const passScore  = !form.password ? 0 : form.password.length < 8 ? 1 : form.password.length < 12 && !/[^a-zA-Z0-9]/.test(form.password) ? 2 : form.password.length >= 12 && /[^a-zA-Z0-9]/.test(form.password) ? 4 : 3;
-  const passLabels = ['','Weak','Fair','Good','Strong'];
-  const passColors = ['','weak','fair','good','strong'];
+  const passScore = !form.password ? 0 : form.password.length < 8 ? 1 : form.password.length < 12 && !/[^a-zA-Z0-9]/.test(form.password) ? 2 : form.password.length >= 12 && /[^a-zA-Z0-9]/.test(form.password) ? 4 : 3;
+  const passLabels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+  const passColors = ['', 'weak', 'fair', 'good', 'strong'];
 
   return (
     <div className="signup-page">
       <div className="blob blob-1" /><div className="blob blob-2" /><div className="blob blob-3" />
 
       <div className="floaters" aria-hidden="true">
-        {['🌸','🌱','🌟','🌙','✨','💧'].map((e, i) => (
+        {['🌸', '🌱', '🌟', '🌙', '✨', '💧'].map((e, i) => (
           <span key={i} className="floater" style={{ left: `${8 + i * 14}%`, animationDelay: `${i * 0.85}s` }}>{e}</span>
         ))}
       </div>
@@ -99,7 +99,7 @@ export default function Signup() {
           <div className="left-content">
             <div className="logo-row">
               <span className="logo-mark">CA</span>
-              <span className="logo-name">CycleAura</span>
+              <span className="logo-name">CyRa</span>
             </div>
             <h2 className="hero-text">Your body tells a story.<br /><em className="hero-em">We help you read it.</em></h2>
             <p className="hero-para">Biometric sensors + machine learning that learns <em>your</em> unique cycle — not a textbook average.</p>
@@ -120,7 +120,7 @@ export default function Signup() {
             </div>
 
             <div className="phase-row">
-              {[['🌸','Menstrual','menstrual'],['🌱','Follicular','follicular'],['🌟','Ovulatory','ovulatory'],['🌙','Luteal','luteal']].map(([emoji,label,cls]) => (
+              {[['🌸', 'Menstrual', 'menstrual'], ['🌱', 'Follicular', 'follicular'], ['🌟', 'Ovulatory', 'ovulatory'], ['🌙', 'Luteal', 'luteal']].map(([emoji, label, cls]) => (
                 <div key={label} className={`phase-chip phase-chip--${cls}`}><span>{emoji}</span><span>{label}</span></div>
               ))}
             </div>
@@ -175,7 +175,7 @@ export default function Signup() {
                 {form.password && (
                   <div className="pass-strength">
                     <div className="pass-bars">
-                      {[1,2,3,4].map(n => (
+                      {[1, 2, 3, 4].map(n => (
                         <div key={n} className={`pass-bar ${passScore >= n ? `pass-bar--${passColors[passScore]}` : ''}`} />
                       ))}
                     </div>
@@ -259,7 +259,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">Cycle Regularity</label>
                 <div className="chip-grid">
-                  {['Very regular','Mostly regular','Somewhat irregular','Very irregular'].map(opt => (
+                  {['Very regular', 'Mostly regular', 'Somewhat irregular', 'Very irregular'].map(opt => (
                     <div key={opt} className={`pill-chip ${form.periodRegularity === opt ? 'pill-chip--active' : ''}`}
                       onClick={() => set('periodRegularity', opt)}>{opt}</div>
                   ))}
@@ -311,7 +311,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">Current Birth Control Method</label>
                 <div className="chip-grid">
-                  {['None','Pill (combined)','Pill (progestin only)','IUD (hormonal)','IUD (copper)','Implant','Patch','Ring','Injection','Other'].map(opt => (
+                  {['None', 'Pill (combined)', 'Pill (progestin only)', 'IUD (hormonal)', 'IUD (copper)', 'Implant', 'Patch', 'Ring', 'Injection', 'Other'].map(opt => (
                     <div key={opt} className={`pill-chip ${form.birthControlType === opt ? 'pill-chip--active' : ''}`}
                       onClick={() => set('birthControlType', opt)}>{opt}</div>
                   ))}
@@ -322,7 +322,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">Select all that apply</label>
                 <div className="chip-grid">
-                  {['PCOS','Endometriosis','Fibroids','Thyroid disorder','Diabetes','Anemia','Anxiety disorder','Depression','Autoimmune condition','None of the above'].map(cond => (
+                  {['PCOS', 'Endometriosis', 'Fibroids', 'Thyroid disorder', 'Diabetes', 'Anemia', 'Anxiety disorder', 'Depression', 'Autoimmune condition', 'None of the above'].map(cond => (
                     <div key={cond} className={`pill-chip ${form.healthConditions.includes(cond) ? 'pill-chip--active' : ''}`}
                       onClick={() => toggleCondition(cond)}>{cond}</div>
                   ))}
@@ -351,7 +351,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">Typical Mood (baseline)</label>
                 <div className="mood-grid">
-                  {[['😄','Happy'],['🙂','Good'],['😐','Neutral'],['😔','Low'],['😤','Irritable'],['😰','Anxious']].map(([emoji, label]) => (
+                  {[['😄', 'Happy'], ['🙂', 'Good'], ['😐', 'Neutral'], ['😔', 'Low'], ['😤', 'Irritable'], ['😰', 'Anxious']].map(([emoji, label]) => (
                     <div key={label} className={`mood-chip ${form.baseMood === label ? 'mood-chip--active' : ''}`}
                       onClick={() => set('baseMood', label)}>
                       <span className="mood-chip-emoji">{emoji}</span>
@@ -364,7 +364,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">Mental Health (general state)</label>
                 <div className="chip-grid">
-                  {['Thriving','Stable','Managing','Struggling','Seeking support'].map(opt => (
+                  {['Thriving', 'Stable', 'Managing', 'Struggling', 'Seeking support'].map(opt => (
                     <div key={opt} className={`pill-chip ${form.mentalHealth === opt ? 'pill-chip--active' : ''}`}
                       onClick={() => set('mentalHealth', opt)}>{opt}</div>
                   ))}
@@ -386,7 +386,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">How does sleep change during your period?</label>
                 <div className="chip-grid">
-                  {['Sleep much more','Sleep a bit more','No change','Sleep less','Very disrupted'].map(opt => (
+                  {['Sleep much more', 'Sleep a bit more', 'No change', 'Sleep less', 'Very disrupted'].map(opt => (
                     <div key={opt} className={`pill-chip ${form.sleepChangeDuringPeriod === opt ? 'pill-chip--active' : ''}`}
                       onClick={() => set('sleepChangeDuringPeriod', opt)}>{opt}</div>
                   ))}
@@ -399,14 +399,14 @@ export default function Signup() {
                   <label className="field-label">Typical Skin Type</label>
                   <select className="field-select" value={form.skinCondition} onChange={e => set('skinCondition', e.target.value)}>
                     <option value="">Select...</option>
-                    {['Oily','Dry','Combination','Normal','Sensitive','Acne-prone'].map(s => <option key={s} value={s}>{s}</option>)}
+                    {['Oily', 'Dry', 'Combination', 'Normal', 'Sensitive', 'Acne-prone'].map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
                 <div className="field">
                   <label className="field-label">Skin during period</label>
                   <select className="field-select" value={form.skinChangeDuringPeriod} onChange={e => set('skinChangeDuringPeriod', e.target.value)}>
                     <option value="">Select...</option>
-                    {['Gets oilier','Gets drier','Breakouts','Flushed/red','No change','Glows more'].map(s => <option key={s} value={s}>{s}</option>)}
+                    {['Gets oilier', 'Gets drier', 'Breakouts', 'Flushed/red', 'No change', 'Glows more'].map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
               </div>
@@ -425,7 +425,7 @@ export default function Signup() {
               <div className="field">
                 <label className="field-label">Typical Diet Pattern</label>
                 <div className="chip-grid">
-                  {['Balanced','Vegetarian','Vegan','Keto / Low-carb','High-protein','Intermittent fasting','No specific diet'].map(opt => (
+                  {['Balanced', 'Vegetarian', 'Vegan', 'Keto / Low-carb', 'High-protein', 'Intermittent fasting', 'No specific diet'].map(opt => (
                     <div key={opt} className={`pill-chip ${form.diet === opt ? 'pill-chip--active' : ''}`}
                       onClick={() => set('diet', opt)}>{opt}</div>
                   ))}

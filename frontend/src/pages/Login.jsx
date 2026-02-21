@@ -4,26 +4,26 @@ import { useAuth } from '../auth/AuthContext';
 import './Login.css';
 
 export default function Login() {
-  const navigate  = useNavigate();
-  const location  = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { login, sendPasswordReset, authError, clearError } = useAuth(); // ← NEW
 
   // After login, go to the page the user originally tried to visit, else '/'
   const from = location.state?.from?.pathname || '/';
 
-  const [email, setEmail]           = useState('');
-  const [password, setPassword]     = useState('');
-  const [showPass, setShowPass]     = useState(false);
-  const [errors, setErrors]         = useState({});
-  const [loading, setLoading]       = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPass, setShowPass] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [forgotMode, setForgotMode] = useState(false);
-  const [resetSent, setResetSent]   = useState(false);
+  const [resetSent, setResetSent] = useState(false);
 
   /* ── Validation ── */
   const validate = () => {
     const e = {};
-    if (!email.includes('@')) e.email    = 'Enter a valid email address';
-    if (password.length < 1) e.password  = 'Password is required';
+    if (!email.includes('@')) e.email = 'Enter a valid email address';
+    if (password.length < 1) e.password = 'Password is required';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -68,18 +68,18 @@ export default function Login() {
   };
 
   /* ── Phase card (demo data — replace with real user cycle state) ── */
-  const cycleDay  = 18;
-  const phaseInfo = cycleDay <= 5  ? { phase: 'Menstrual',  emoji: '🌸', cls: 'menstrual',  msg: 'Rest & restore today.'         }
-                  : cycleDay <= 13 ? { phase: 'Follicular', emoji: '🌱', cls: 'follicular', msg: 'Energy is rising — seize it.'   }
-                  : cycleDay === 14? { phase: 'Ovulatory',  emoji: '🌟', cls: 'ovulatory',  msg: "Peak day. You're glowing."      }
-                  :                  { phase: 'Luteal',     emoji: '🌙', cls: 'luteal',     msg: 'Turn inward. Honour your rest.' };
+  const cycleDay = 18;
+  const phaseInfo = cycleDay <= 5 ? { phase: 'Menstrual', emoji: '🌸', cls: 'menstrual', msg: 'Rest & restore today.' }
+    : cycleDay <= 13 ? { phase: 'Follicular', emoji: '🌱', cls: 'follicular', msg: 'Energy is rising — seize it.' }
+      : cycleDay === 14 ? { phase: 'Ovulatory', emoji: '🌟', cls: 'ovulatory', msg: "Peak day. You're glowing." }
+        : { phase: 'Luteal', emoji: '🌙', cls: 'luteal', msg: 'Turn inward. Honour your rest.' };
 
   return (
     <div className="login-page">
       <div className="orb orb-1" /><div className="orb orb-2" /><div className="orb orb-3" />
 
       <div className="particles" aria-hidden="true">
-        {['🌸','✨','🌙','💧','🌿','⭐'].map((sym, i) => (
+        {['🌸', '✨', '🌙', '💧', '🌿', '⭐'].map((sym, i) => (
           <span key={i} className="particle"
             style={{ left: `${6 + i * 15}%`, animationDelay: `${i * 0.7}s`, animationDuration: `${4 + i * 0.5}s` }}>
             {sym}
@@ -94,7 +94,7 @@ export default function Login() {
           <div className="brand-inner">
             <div className="brand-logo">
               <span className="brand-mark">CA</span>
-              <span className="brand-name">CycleAura</span>
+              <span className="brand-name">CyRa</span>
             </div>
 
             <div className={`phase-card phase-card--${phaseInfo.cls}`}>
@@ -132,7 +132,7 @@ export default function Login() {
             </div>
 
             <div className="brand-stats">
-              {[['89.6%','ML Accuracy'],['3','Sensors'],['28d','Avg. Cycle']].map(([val,lbl]) => (
+              {[['89.6%', 'ML Accuracy'], ['3', 'Sensors'], ['28d', 'Avg. Cycle']].map(([val, lbl]) => (
                 <div key={lbl} className="brand-stat">
                   <span className="brand-stat-val">{val}</span>
                   <span className="brand-stat-lbl">{lbl}</span>
@@ -147,7 +147,7 @@ export default function Login() {
 
           {!forgotMode ? (
             <div className="login-form-inner">
-              <div className="form-eyebrow"><span className="form-eyebrow-dot" />Welcome back to CycleAura</div>
+              <div className="form-eyebrow"><span className="form-eyebrow-dot" />Welcome back to CyRa</div>
               <h2 className="form-heading">Sign in</h2>
               <p className="form-subheading">Track, predict & understand your cycle — pick up right where you left off.</p>
 
@@ -206,7 +206,7 @@ export default function Login() {
                     ⚠️ {authError}
                   </div>
                 )}
-                New to CycleAura?{' '}
+                New to CyRa?{' '}
                 <Link to="/signup" className="link-text">Create an account</Link>
               </p>
             </div>

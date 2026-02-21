@@ -2,13 +2,13 @@
 #define CONFIG_H
 
 // ── WiFi Credentials ──────────────────────────────────────────────
-#define WIFI_SSID     "Laasya"
+#define WIFI_SSID     "Laasyy"
 #define WIFI_PASSWORD "123456789"
 
 // ── Flask Backend URL ─────────────────────────────────────────────
 // Replace with your laptop IP when testing locally
 // Example: "http://192.168.1.100:5000"
-#define FLASK_SERVER  "http://10.29.223.68:5000"
+#define FLASK_SERVER  "https://noncondimental-superpatiently-susana.ngrok-free.dev"
 
 // ── User ID ───────────────────────────────────────────────────────
 // Set this to match the logged-in user in Firebase

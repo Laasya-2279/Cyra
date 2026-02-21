@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-brand">
         <span className="brand-icon">🌸</span>
-        <span className="brand-name">CycleAura</span>
+        <span className="brand-name">CyRa</span>
       </div>
       
       <ul className="nav-links">

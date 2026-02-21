@@ -60,8 +60,8 @@ void readADXL335(float &ax, float &ay, float &az,
 
   // ADC (0–4095) → voltage (0–3.3V) → g-force
   // ADXL335: 0g = 1.65V, sensitivity = 0.300 V/g
-  ax = ((rawX / 4095.0f) * 3.3f - 1.65f) / 0.300f;
-  ay = ((rawY / 4095.0f) * 3.3f - 1.65f) / 0.300f;
+  ax = ((rawX / 4095.0f) * 3.3f - 1.548f) / 0.300f;
+  ay = ((rawY / 4095.0f) * 3.3f - 1.560f) / 0.300f;
   az = ((rawZ / 4095.0f) * 3.3f - 1.65f) / 0.300f;
 
   // Raw magnitude (includes ~1g gravity — used for display)
@@ -83,7 +83,7 @@ int readCleanBPM(float motionCompensated) {
   if (rawIR < 50000) return 0; // No finger
 
   // FIX: use compensated magnitude (threshold 0.5g for motion gate)
-  if (motionCompensated < 0.5f && checkForBeat(rawIR)) {
+  if (motionCompensated < 0.8f && checkForBeat(rawIR)) {
     long delta = millis() - lastBeat;
     lastBeat = millis();
     if (delta > 300 && delta < 3000) { // Valid beat: 20–200 BPM range

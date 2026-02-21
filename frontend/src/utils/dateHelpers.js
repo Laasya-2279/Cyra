@@ -1,6 +1,6 @@
 /**
  * Date formatting utilities
- * Helper functions for date operations in CycleAura
+ * Helper functions for date operations in CyRa
  */
 
 /**
@@ -11,24 +11,24 @@
  */
 export const formatDate = (date, format = 'full') => {
   const d = new Date(date);
-  
+
   if (isNaN(d.getTime())) {
     return 'Invalid date';
   }
-  
+
   switch (format) {
     case 'short':
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    
+
     case 'time':
       return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    
+
     case 'relative':
       return getRelativeTime(d);
-    
+
     case 'iso':
       return d.toISOString().split('T')[0];
-    
+
     case 'full':
     default:
       return d.toLocaleDateString('en-US', {
@@ -52,7 +52,7 @@ export const getRelativeTime = (date) => {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
-  
+
   if (days > 0) {
     return days === 1 ? 'Yesterday' : `${days} days ago`;
   }

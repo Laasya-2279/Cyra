@@ -34,7 +34,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Welcome to CycleAura</h1>
+        <h1>Welcome to CyRa</h1>
         <p className="date">{new Date().toLocaleDateString('en-US', { 
           weekday: 'long', 
           year: 'numeric', 

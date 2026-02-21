@@ -5,7 +5,7 @@ import './Settings.css';
 const Settings = () => {
   const { settings, updateSettings, isConnected } = useCycle();
   const [loading, setLoading] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     // Device & Notifications
     cycleLength: settings.cycleLength || 28,
@@ -39,7 +39,7 @@ const Settings = () => {
     diet: settings.diet || '',
     mentalHealth: settings.mentalHealth || '',
   });
-  
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -76,7 +76,7 @@ const Settings = () => {
       previousCycles: f.previousCycles.filter((_, idx) => idx !== i)
     }));
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -85,24 +85,24 @@ const Settings = () => {
     setLoading(false);
     alert('Settings saved!');
   };
-  
+
   return (
     <div className="settings-page">
       <h1>Settings & Profile</h1>
-      
+
       <form onSubmit={handleSubmit}>
-        
+
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* Device & Notifications Section */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <section className="settings-section">
           <h2>🔌 Device Connection</h2>
-          
+
           <div className="connection-status">
             <span className={`status-indicator ${isConnected ? 'connected' : 'disconnected'}`}></span>
             <span>{isConnected ? 'Device Connected' : 'Device Disconnected'}</span>
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="deviceId">Device ID</label>
             <input
@@ -111,10 +111,10 @@ const Settings = () => {
               name="deviceId"
               value={formData.deviceId}
               onChange={handleChange}
-              placeholder="e.g., cycleaura_001"
+              placeholder="e.g., cyra_001"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="serverUrl">Server URL</label>
             <input
@@ -130,7 +130,7 @@ const Settings = () => {
 
         <section className="settings-section">
           <h2>🔔 Notifications</h2>
-          
+
           <div className="form-group checkbox">
             <input
               type="checkbox"
@@ -148,7 +148,7 @@ const Settings = () => {
         {/* ═══════════════════════════════════════════════════════════════ */}
         <section className="settings-section">
           <h2>📏 Personal Information</h2>
-          
+
           <div className="form-group">
             <label htmlFor="dob">Date of Birth</label>
             <input
@@ -218,7 +218,7 @@ const Settings = () => {
 
         <section className="settings-section">
           <h2>📅 Cycle Basics</h2>
-          
+
           <div className="form-group">
             <label htmlFor="cycleLength">Average Cycle Length (days)</label>
             <input
@@ -231,7 +231,7 @@ const Settings = () => {
               max={40}
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="periodLength">Period Length (days)</label>
             <input
@@ -274,7 +274,7 @@ const Settings = () => {
         {/* ═══════════════════════════════════════════════════════════════ */}
         <section className="settings-section">
           <h2>📊 Cycle History</h2>
-          
+
           {formData.previousCycles.map((cycle, i) => (
             <div key={i} className="cycle-log-card">
               <div className="cycle-log-header">
@@ -324,7 +324,7 @@ const Settings = () => {
 
         <section className="settings-section">
           <h2>💊 Birth Control & Health</h2>
-          
+
           <div className="form-group">
             <label htmlFor="birthControl">Birth Control Method</label>
             <select id="birthControl" name="birthControlType" value={formData.birthControlType} onChange={handleChange}>
@@ -361,7 +361,7 @@ const Settings = () => {
         {/* ═══════════════════════════════════════════════════════════════ */}
         <section className="settings-section">
           <h2>😊 Mood & Mental Health</h2>
-          
+
           <div className="form-group">
             <label htmlFor="baseMood">Baseline Mood</label>
             <select id="baseMood" name="baseMood" value={formData.baseMood} onChange={handleChange}>
@@ -389,7 +389,7 @@ const Settings = () => {
 
         <section className="settings-section">
           <h2>😴 Sleep</h2>
-          
+
           <div className="form-group">
             <label htmlFor="sleepHours">Typical Sleep Hours: <strong>{formData.sleepHours}h</strong></label>
             <input
@@ -419,7 +419,7 @@ const Settings = () => {
 
         <section className="settings-section">
           <h2>✨ Skin</h2>
-          
+
           <div className="form-group-row">
             <div className="form-group">
               <label htmlFor="skinCondition">Typical Skin Type</label>
@@ -448,7 +448,7 @@ const Settings = () => {
 
         <section className="settings-section">
           <h2>⚡ Energy & Diet</h2>
-          
+
           <div className="form-group">
             <label htmlFor="energyLevel">Baseline Energy Level: <strong>{formData.energyLevel}/10</strong></label>
             <input
@@ -478,7 +478,7 @@ const Settings = () => {
         {/* Data Management Section */}
         <section className="settings-section">
           <h2>📂 Data Management</h2>
-          
+
           <div className="button-group">
             <button type="button" className="btn secondary">
               Export Data
@@ -491,14 +491,14 @@ const Settings = () => {
             </button>
           </div>
         </section>
-        
+
         <button type="submit" className={`btn primary save-btn ${loading ? 'btn--loading' : ''}`} disabled={loading}>
           {loading ? 'Saving...' : 'Save All Settings'}
         </button>
       </form>
-      
+
       <footer className="settings-footer">
-        <p>CycleAura v1.0.0</p>
+        <p>CyRa v1.0.0</p>
         <p>Smart Menstrual Cycle Tracking</p>
       </footer>
     </div>

@@ -1,5 +1,5 @@
 """
-CycleAura — Socket.io Event Handlers
+CyRa — Socket.io Event Handlers
 ======================================
 Real-time push from server to all connected React clients.
 Called from app.py after every sensor POST.
@@ -20,7 +20,7 @@ def register_events():
     @socketio.on("connect")
     def on_connect():
         print("[Socket.io] Client connected")
-        emit("status", {"msg": "Connected to CycleAura server"})
+        emit("status", {"msg": "Connected to CyRa server"})
 
     @socketio.on("disconnect")
     def on_disconnect():
@@ -37,7 +37,7 @@ def push_bbt(user_id: str, bbt: float):
 def push_heart_rate(user_id: str, bpm: int, spo2: int, mar_clean: bool):
     """Broadcast new HR reading."""
     if socketio:
-        socketio.emit("hr_update", {
+        socketio.emit("heartrate_update", {
             "user_id":   user_id,
             "bpm":       bpm,
             "spo2":      spo2,
