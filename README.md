@@ -1,5 +1,4 @@
 <img width="827" height="271" alt="image" src="https://github.com/user-attachments/assets/a11a9147-f14f-46d6-88b0-4f55acfabecf" /><p align="center">
-  <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
 # CyRa 🎯
@@ -146,20 +145,25 @@ python app.py
 #### Screenshots 
 
 ![Screenshot1] : Dashboard
-Pic/Dashboard.jpeg
+<img width="827" height="271" alt="image" src="Pic/Dashboard.jpeg" /><p align="center">
+</p>
+
 
 ![Screenshot2] : Signin
-Pic/signin.jpeg
+<img width="827" height="271" alt="image" src="Pic/signin.jpeg" /><p align="center">
+
 
 ![Screenshot3]: signup
-Pic/signup.jpeg
+<img width="827" height="271" alt="image" src="Pic/signup.jpeg" /><p align="center">
+
 
 #### Diagrams
 
 **System Architecture:**
 
 ![Architecture Diagram](docs/architecture.png)
-Pic/Architwcture.jpeg
+<img width="827" height="271" alt="image" src="Pic/Architwcture.jpeg" /><p align="center">
+
 
 **Application Workflow:**
 
@@ -172,9 +176,7 @@ Pic/Architwcture.jpeg
 ### For Hardware:
 
 #### Schematic & Circuit
-
-Pic/Circuit dai.jpeg
-
+<img width="827" height="271" alt="image" src="Pic/Circuit dai.jpeg" /><p align="center">
 
 ![Schematic]
 
@@ -182,21 +184,24 @@ Pic/Circuit dai.jpeg
 #### Build Photos:
 
 ![Components]
-Pic/Components/WhatsApp Image 2026-02-21 at 8.45.16 AM.jpeg - ESP 32
-Pic/Components/WhatsApp Image 2026-02-21 at 8.45.48 AM.jpeg - Temperature sensor
-Pic/Components/WhatsApp Image 2026-02-21 at 8.46.06 AM.jpeg - Accelometor
-Pic/Components/WhatsApp Image 2026-02-21 at 8.46.37 AM.jpeg - MAX30102
-Pic/Components/WhatsApp Image 2026-02-21 at 8.48.09 AM.jpeg - Resistor 4.7oh
-Pic/Components/WhatsApp Image 2026-02-21 at 8.48.22 AM.jpeg - USB cable
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.45.16 AM.jpeg" /><p align="center">
+ - ESP 32
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.45.48 AM.jpeg" /><p align="center">
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.46.06 AM.jpeg" /><p align="center">
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.46.37 AM.jpeg" /><p align="center">
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.48.09 AM.jpeg" /><p align="center">
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.48.22 AM.jpeg" /><p align="center">
 
 
 
 
 ![Build](Add photos of build process here)
-Pic/Components/WhatsApp Image 2026-02-21 at 8.47.19 AM.jpeg 
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.47.19 AM.jpeg " /><p align="center">
+
 
 ![Final](Add photo of final product here)
-Pic/Components/WhatsApp Image 2026-02-21 at 8.47.41 AM.jpeg
+<img width="827" height="271" alt="image" src="Pic/Components/WhatsApp Image 2026-02-21 at 8.47.41 AM.jpeg" /><p align="center">
+
 
 ---
 
@@ -347,12 +352,46 @@ python app.py
 ## Project Demo
 
 ### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
+https://drive.google.com/file/d/1DEAxZTcOSHJu2X62a3U3_ma0BSdFjmmE/view?usp=sharing
+Hardware Features
+•	Daily BBT reading via DS18B20 — most important input for ML (53.9% feature importance)
+•	Real-time heart rate and SpO2 via MAX30102
+•	Motion Artifact Removal via ADXL335 — near medical-grade HR accuracy
+•	OLED shows: cycle phase, BBT reading, live BPM, WiFi status
+•	WiFi sync to cloud every 60 seconds
 
-*Explain what the video demonstrates - key features, user flow, technical highlights*
+Dashboard (Home Page)
+•	Animated cycle phase wheel — Menstrual (red), Follicular (yellow), Ovulatory (green), Luteal (blue)
+•	Live BBT card — today's reading with trend arrow
+•	Live heart rate and SpO2 card — updates every 60 seconds via Socket.io
+•	ML prediction card — current phase, confidence %, ovulation status
+•	Days until next period countdown
+•	Predicted health score out of 10
+•	Today's phase-based tip card
 
-### Additional Demos
-[Add any extra demo materials/links - Live site, APK download, online demo, etc.]
+Insights Page
+•	30-day BBT trend graph with phase color-coding
+•	Heart rate history graph
+•	Ovulation window highlighted on cycle timeline
+•	Cycle length history chart
+•	Next predicted cycle length
+•	Health score trend over time
+
+Journal Page
+•	Mood selector — emoji-based (1-10 mapped to happy to very sad)
+•	Pain level slider (1-10)
+•	Energy level slider (1-10)
+•	Flow level selector (Light / Moderate / Heavy)
+•	PMS symptoms checkbox
+•	Free text notes
+•	Past entries calendar view
+
+Tips Page
+•	Phase-specific diet recommendations (e.g. iron-rich foods in menstrual phase)
+•	Exercise suggestions (e.g. light yoga in menstrual, HIIT in follicular)
+•	Sleep hygiene tips per phase
+•	Emotional wellness advice
+
 
 ---
 
@@ -413,4 +452,5 @@ This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LI
 ---
 
 Made with ❤️ at TinkerHub
+
 
