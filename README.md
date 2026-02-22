@@ -13,7 +13,7 @@
 
 
 ### Project Description
-CycleAura is a smart wearable menstrual health tracking system that uses real-time biometric sensing and machine learning to monitor and predict a user’s menstrual cycle phases with high accuracy. Instead of manual input or calendar-based estimations, the system continuously collects physiological data such as basal body temperature, heart rate, and motion patterns using body-mounted sensors.
+CyRa is a smart wearable menstrual health tracking system that uses real-time biometric sensing and machine learning to monitor and predict a user’s menstrual cycle phases with high accuracy. Instead of manual input or calendar-based estimations, the system continuously collects physiological data such as basal body temperature, heart rate, and motion patterns using body-mounted sensors.
 
 The wearable device transmits sensor data to a cloud-based backend, where a machine learning model analyses patterns to predict cycle phases, ovulation windows, and upcoming periods. Results appear on an interactive web dashboard that offers personalised health insights, symptom tracking, and phase-based wellness guidance.
 
@@ -24,7 +24,7 @@ By combining hardware sensing, data analytics, and personalised recommendations,
 Most existing menstrual tracking apps rely on calendar-based predictions and manual input, which ignore real physiological signals and lead to inaccurate results. This prevents users from receiving reliable ovulation predictions and personalised health insights. There is a need for an automated system that uses real biometric data to provide accurate, individualised cycle tracking.
 
 ### The Solution
-CycleAura solves this problem by using a wearable device that continuously collects real biometric data such as basal body temperature, heart rate, and motion. This data is analysed using machine learning to accurately predict menstrual cycle phases, ovulation, and upcoming periods. The system then delivers personalised insights and health guidance through an interactive web dashboard.
+CyRa solves this problem by using a wearable device that continuously collects real biometric data such as basal body temperature, heart rate, and motion. This data is analysed using machine learning to accurately predict menstrual cycle phases, ovulation, and upcoming periods. The system then delivers personalised insights and health guidance through an interactive web dashboard.
 
 ---
 
@@ -452,6 +452,7 @@ This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LI
 ---
 
 Made with ❤️ at TinkerHub
+
 
 
 
